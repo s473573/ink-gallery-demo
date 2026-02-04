@@ -9,6 +9,10 @@
 
 A small UI-design demo: an interactive card gallery placed over a fluid canvas -- hovering becomes feedback, cursor movement turns into atmosphere.  
 
+### 🖥️ Live Demo
+
+[**Give it a shot**](https://stirring-pothos-217ff9.netlify.app/) at _netlify.app_.
+
 ---
 
 ## Goals
@@ -19,13 +23,15 @@ A small UI-design demo: an interactive card gallery placed over a fluid canvas -
   - the fluid effect (background layer)
   - the bridge between them (event forwarding)
 
----
-
 ## What’s inside
 
-### 1) Gallery built with discriminated unions (TypeScript)
+### 1) Gallery with generative art covers (TypeScript)
 Cards are typed as a union (`CardItem`) with a `kind` discriminator (`case`, `note`, `metric`, `link`).  
 That keeps rendering explicit and safe via type narrowing.
+
+Each card cover uses a _lightweight procedural approach_, gradient/noise/primitives are composed from a seed.
+A consistent cover style is maintained without managing any image files.
+
 
 ### 2) Reducer-driven UI states
 Card behavior uses a reducer to keep interaction states predictable.
