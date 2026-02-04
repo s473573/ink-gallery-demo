@@ -1,0 +1,55 @@
+/* app/fluid.css */
+
+:root{
+  --fluid-opacity: 0.8;
+  --fluid-sat: 0.6;
+  --fluid-bright: 0.44;
+  --fluid-contrast: 1.14;
+  --fluid-sepia: 0.10;
+
+  --scrim-base: 0.34;  /* overall darkening */
+  --scrim-center: 0.18;/* keeps middle readable */
+  --scrim-edge: 0.62;  /* vignette depth */
+}
+
+.fluidStage {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+.fluidCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  /* tone map */
+  opacity: var(--fluid-opacity);
+  filter: saturate(var(--fluid-sat))
+  brightness(var(--fluid-bright))
+  contrast(var(--fluid-contrast))
+  sepia(var(--fluid-sepia));
+
+  z-index: -1;
+}
+
+.fluidStage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  /* darken + vignette to keep edges grounded */
+  background:
+    radial-gradient(110% 80% at 50% 40%, rgba(0,0,0,0.10), rgba(0,0,0,0.30) 70%),
+    rgba(0,0,0,0.18);
+
+  z-index: 1;
+}
+
+.fluidOverlay {
+  position: relative;
+  z-index: 3;
+}
